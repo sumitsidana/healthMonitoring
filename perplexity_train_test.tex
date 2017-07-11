@@ -1,0 +1,47 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{datetime}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\begin{document}
+\title{Explanation\_Train\_Test}
+\author{Sumit Sidana}
+\maketitle
+\newdate{date1}{26}{02}{2016}
+\date{\displaydate{date1}}
+\section{Explanation: Train and Test}
+Notations:
+\begin{equation}
+z = ailment
+\end{equation}
+\begin{equation}
+t = time (month, week,... etc.)
+\end{equation}
+
+
+\textit{Perplexity of topic model} depends on its ability to predict the \textit{probability of future words}.\\
+\textit{Probability of words} depend on \textit{probability of topic} with the following formula.
+\begin{equation}\label{probWord}
+P(w) = \sum_zP(w|z)P(z)=\sum_z\underbrace{\frac{n(z,w)}{n(z)}}_	{\mbox{Constant, w $\in$ second month, n(z,w) $\in$ train}}\times \underbrace{P(z)}_{\mbox{Varies with topic model}}
+\end{equation}
+
+So focussing on the only thing in equation \ref{probWord} which varies: $P(z)$\\
+\begin{equation}
+P(z|t) = \sum_{tweet\ p \in t}P(z|p)
+\end{equation}
+
+\begin{equation}
+P(z|p) = 	\sum_{word\ w \in p}P(z|w)P(w|p)=\sum_w\frac{n(z,w)}{n(w)}P(w|p)
+\end{equation}
+
+P(z) needs to be calculated on the 1st month and:
+\begin{itemize}
+\item \textbf{atam}: Underlying assumption of atam is that topics stay static with respect to time. That is why $P(z)$ of 1st month needs to be used for $P(z)$ of the second month. Because P(z) stays static with time. This is what tm-lda did for lda
+\item \textbf{tmatam}:  $P(z)$ of second month needs to be predicted using the $P(z)$ of first month using the transition matrix learnt during training period
+\item \textbf{tatam}: $P(z)$ of second month needs to be computed directly on second month because model itself learnt ailments using the knowledge of time in-built in the model. Can ailments inferred using a time-aware model  actual representative of words tweeted about in the time of interest or it just learns noise?
+\end{itemize}
+
+
+
+\end{document}
