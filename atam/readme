@@ -1,0 +1,92 @@
+Attached is Java code for the topic models.
+
+Compile with
+
+javac -cp commons-math-2.1.jar *.java
+
+I included a couple small Twitter data sets (100K tweets) as an example, in the LDA and ATAM input formats.
+
+To run the code for LDA, use the command:
+
+java -cp commons-math-2.1.jar:. LearnTopicModel -model lda -Z 50 -iters 1000 -input lda.txt
+
+The -iters flag is the number of Gibbs sampling iterations. I usually use about 1000 for LDA and 5000 for ATAM which has more variables. The -Z flag is the number of topics. After it finishes, it stores the values of the sampled variables in a file called lda.txt.assign. 
+
+The python script topwords_lda.py will output the highest probability words for each topic. Use the command
+
+python topwords_lda.py lda.txt.assign > output_lda.txt
+
+For each topic, you'll see a group of words which have been "clustered" together. Not all topics will be coherent clusters, but some of them should be. For example, when I tried this, I see a topic that looks like
+
+Topic 2
+
+body 1049
+exercise 363
+fat 176
+healthy 171
+mind 157
+help 121
+physical 112
+blood 112
+diet 106
+low 102
+health 99
+
+all of these words are related to diet/exercise, so this looks coherent to me. The number to the right of every word is the number of times that word was assigned to this topic cluster during sampling (it is proportional to the probability p(word|topic) except it hasn't been normalized to sum to 1).
+
+At the very top of output_lda.txt you'll also see something labeled "Background", basically this is a special topic that has high probability and is used to model common words that appear frequently. This basically serves the purpose of filtering out background noise, and probably isn't interesting by itself.
+
+Running ATAM is similar. You can use the command
+
+java -cp commons-math-2.1.jar:. LearnTopicModel -model atam -Z 25 -A 25 -iters 5000 -input atam.txt
+
+Here -Z is the number of topics while -A is the number of "ailments", which are like topic clusters but they break down the word probabilities based on whether the word is a symptom or treatment (or not) word.
+
+You can examine the top words for each topic/ailment with
+
+python topwords_atam.py atam.txt.assign > output_atam.txt
+
+This will show the topics first, then the ailments. Ailments will show the top general words, then the top symptom words, then the top treatment words. For example, this is a topic cluster about clothes (not about health/ailments):
+
+Topic 8
+wear 532
+wearing 267
+shirt 190
+shorts 183
+knee 149
+chest 141
+body 137
+neck 133
+black 116
+socks 106
+dress 105
+
+Here is an ailment cluster with words about sleep problems:
+
+Ailment 9 (12311)                                                                                                              
+night 1032
+body 929
+day 680
+bed 646
+woke 638
+morning 631
+hours 618
+amp 599
+work 521
+tired 471
+*Symptoms
+  sleep 1713
+  headache 690  
+  insomnia 182
+  sleeping 169
+  fall 153
+  migraine 126
+*Treatments
+  sleeping 67
+  caffeine 59
+  pills 51
+  alcohol 30
+  advil 26
+  pill 20
+
+
