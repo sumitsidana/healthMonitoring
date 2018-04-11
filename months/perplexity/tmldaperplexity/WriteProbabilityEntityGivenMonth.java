@@ -1,0 +1,41 @@
+package tmldaperplexity;
+import java.io.*;
+import java.util.*;
+
+public class WriteProbabilityEntityGivenMonth {
+
+	/**
+	 * @param args
+	 * @throws IOException 
+	 */
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+
+					FileInputStream fstreamProbEnGivWordBD = new FileInputStream
+							(args[0]);
+					DataInputStream inProbEnGivWordBD = new 
+							DataInputStream(fstreamProbEnGivWordBD);
+					BufferedReader brProbEnGivWordBD = new BufferedReader
+							(new InputStreamReader(inProbEnGivWordBD));
+					String lineProbEnGivWordBD = null;
+					PrintWriter out  = new PrintWriter(new BufferedWriter
+							(new FileWriter(args[1]+
+									"",true)));
+					while((lineProbEnGivWordBD = brProbEnGivWordBD.readLine())!=null){
+						String [] array = lineProbEnGivWordBD.split(",");
+						for(int i = 0 ; i < array.length ; i++){
+							int indexofColon = array[i].indexOf(":");
+							String value = array[i].substring(indexofColon+1);
+							if(i <= array.length - 2)
+							out.write(value+",");
+							else
+								out.write(value);
+						}
+						out.close();
+					}
+				
+			
+		
+	}
+
+}
