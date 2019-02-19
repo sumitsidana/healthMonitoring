@@ -28,6 +28,6 @@ java -cp commons-math4-4.0-SNAPSHOT.jar:./tatam/src/main/java/ tatam.LearnTopicM
 T="$(($(date +%s)-T))"
 echo "Time in seconds: ${T}"
 echo " Writing bag of words for ailments in tatam"
-python CalculationDistributionsInferences.py InputToATAM5000.assign > output_tatam.txt
+python CalculationDistributionsInferences.py tatam_months/InputToTATAM5000.assign > tatam_months/output_tatam.txt
 
 echo "now look at tatam_output.txt and annotate health-related topics inferred by tatam"
