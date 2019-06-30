@@ -1,6 +1,6 @@
 #!/bin/bash
 T="$(date +%s)"
-# All the files required are present here: https://1drv.ms/f/s!Alr4JS0ifh7GgfMgSWaIhBI92y0c5Q
+# All the files required are present here: https://1drv.ms/u/s!Alr4JS0ifh7GgfMgSWaIhBI92y0c5Q?e=CqVglg
 javac -cp createATAMInput/stanford-corenlp-3.3.1.jar:createATAMInput/stanford-corenlp-3.5.0.jar:createATAMInput/stanford-corenlp-3.2.0-models.jar:.:  createATAMInput/CreateATAMInputStopWordsUnleashedWithLowerCaseIssue.java createATAMInput/StanfordLemmatizer.java
 java -cp ./:./createATAMInput/:createATAMInput/stanford-corenlp-3.3.1.jar:createATAMInput/stanford-corenlp-3.5.0.jar:createATAMInput/stanford-postagger-full-2014-01-04/:createATAMInput/stanford-corenlp-3.2.0-models.jar createATAMInput.CreateATAMInputStopWordsUnleashedWithLowerCaseIssue stopwords.txt DataSets/ HealthFinalVersion
 #
