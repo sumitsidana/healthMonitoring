@@ -15,17 +15,20 @@ Output: InputToTATAM.static:
 javac -cp createTATAMInput/joda-time-2.5.jar createTATAMInput/createTATAMInput/WriteTimeStamps.java
 java -cp ./:createTATAMInput:createTATAMInput/joda-time-2.5.jar createTATAMInput.WriteTimeStamps months healthMajorAreas
 
-# healthMajorAreas changes with new tweets. The goal is to be able to run it with new tweets
+healthMajorAreas changes with new tweets. The goal is to be able to run it with new tweets
 
 
-# Output: months
+Output: months
 
 javac createTATAMInput/createTATAMInput/MergeTimeStampsWInput.java
 java -cp .:createTATAMInput/ createTATAMInput.MergeTimeStampsWInput months InputToTATAM.static
-# Output: InputToTATAMmonths
+
+Output: InputToTATAMmonths
+
 echo "Executing tatam now"
 javac -cp commons-math4-4.0-SNAPSHOT.jar tatam/src/main/java/tatam/*.java
 java -cp commons-math4-4.0-SNAPSHOT.jar:./tatam/src/main/java/ tatam.LearnTopicModel -model atam -Z 25 -A 25 -iters 5000 -input tatam_months/InputToTATAMmonths
+
 
 echo " Writing bag of words for ailments in tatam"
 python CalculationDistributionsInferences.py tatam_months/InputToTATAM5000.assign > tatam_months/output_tatam.txt
