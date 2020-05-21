@@ -4,6 +4,7 @@ To run the code of T-ATAM, run the following script:
 
 
 Download all the input files here: https://1drv.ms/f/s!Alr4JS0ifh7GgfJa0mnyU7NaKeckuQ
+
 Send email to sidana.sumit@gmail.com, if something fails.
 
 javac -cp createTATAMInput/stanford-corenlp-3.3.1.jar:createTATAMInput/stanford-corenlp-3.5.0.jar:createTATAMInput/stanford-corenlp-3.2.0-models.jar:.:createTATAMInput/joda-time-2.5.jar  createTATAMInput/createTATAMInput/CreateTATAMInput.java createTATAMInput/createTATAMInput/StanfordLemmatizer.java
