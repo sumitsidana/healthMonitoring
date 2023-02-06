@@ -1,4 +1,4 @@
-# healthMonitoring: contains code related to topic model: TM-ATAM and T-ATAM
+# healthMonitoring: contains code related to topic model: `TM-ATAM` and `T-ATAM`
 
 To run the code of T-ATAM, run the following script:
 
@@ -15,7 +15,7 @@ java -cp ./:createTATAMInput/:createTATAMInput/stanford-corenlp-3.3.1.jar:create
 ```
 
 ```
-Output: InputToTATAM.static:
+Output: InputToTATAM.static :
 ```
 
 ```
@@ -23,10 +23,10 @@ javac -cp createTATAMInput/joda-time-2.5.jar createTATAMInput/createTATAMInput/W
 java -cp ./:createTATAMInput:createTATAMInput/joda-time-2.5.jar createTATAMInput.WriteTimeStamps months healthMajorAreas
 ```
 
-healthMajorAreas changes with new tweets. The goal is to be able to run it with new tweets
+`healthMajorAreas` changes with new tweets. The goal is to be able to run it with new tweets
 
 
-Output: months
+Output: `months`
 
 ```
 javac createTATAMInput/createTATAMInput/MergeTimeStampsWInput.java
